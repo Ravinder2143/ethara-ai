@@ -36,6 +36,14 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/users", userRoutes);
 
+// Serve Static Frontend Files in Production
+const frontendDist = path.join(__dirname, "packages/frontend/dist");
+app.use(express.static(frontendDist));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendDist, "index.html"));
+});
+
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.status || 500).json({ message: err.message || "Server Error" });
