@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev -w @ethara-ai/frontend\" \"npm run dev -w @ethara-ai/backend\"",
     "start": "node index.js",
+    "start:all": "npm start",
     "build": "npm run build -w @ethara-ai/frontend",
     "install:all": "npm install",
     "frontend": "npm run dev -w @ethara-ai/frontend",
