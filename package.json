@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "dev:all": "concurrently \"npm run dev --prefix backend\" \"npm run dev\"",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"vite\"",
+    "install:all": "npm install && npm install --prefix backend",
+    "start:all": "concurrently \"npm start --prefix backend\" \"npm run preview\"",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "backend": "npm run dev --prefix backend"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.100.9",
