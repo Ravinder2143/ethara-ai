@@ -7,7 +7,11 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const uri = process.env.MONGO_URI || process.env.MONGODB_URI;
+    if (!uri) {
+      throw new Error("MongoDB connection string (MONGO_URI or MONGODB_URI) is missing in environment variables.");
+    }
+    const conn = await mongoose.connect(uri);
     console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
     console.error("MongoDB connection error:", error.message);
