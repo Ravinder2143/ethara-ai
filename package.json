@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix backend\" \"vite\"",
+    "start": "node index.js",
     "install:all": "npm install && npm install --prefix backend",
     "start:all": "concurrently \"npm start --prefix backend\" \"npm run preview\"",
     "build": "vite build",
@@ -22,7 +23,14 @@
     "react-hook-form": "^7.75.0",
     "react-hot-toast": "^2.6.0",
     "react-router-dom": "^7.15.0",
-    "zustand": "^5.0.13"
+    "zustand": "^5.0.13",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.6.0",
+    "multer": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
