@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 
 # Backend specific
-backend/node_modules
-backend/.env
-backend/uploads/*
-!backend/uploads/.gitkeep
+packages/backend/node_modules
+packages/backend/.env
+packages/backend/uploads/*
+!packages/backend/uploads/.gitkeep

@@ -1,5 +1,5 @@
 {
-  "name": "ethara-ai-backend",
+  "name": "@ethara-ai/backend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
