@@ -10,13 +10,15 @@
     "dev": "concurrently \"npm run dev -w @ethara-ai/frontend\" \"npm run dev -w @ethara-ai/backend\"",
     "start": "node index.js",
     "start:all": "npm start",
-    "build": "npm run build -w @ethara-ai/frontend",
+    "build": "npm run build -w @ethara-ai/frontend && npm run build:copy",
+    "build:copy": "copyfiles -u 2 \"packages/frontend/dist/**/*\" .",
     "install:all": "npm install",
     "frontend": "npm run dev -w @ethara-ai/frontend",
     "backend": "npm run dev -w @ethara-ai/backend"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "copyfiles": "^2.4.1"
   },
   "dependencies": {
     "express": "^4.18.2",

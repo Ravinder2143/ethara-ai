@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import connectDB from "./packages/backend/config/db.js";
 import authRoutes from "./packages/backend/routes/auth.js";
@@ -37,11 +38,22 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/users", userRoutes);
 
 // Serve Static Frontend Files in Production
-const frontendDist = path.join(__dirname, "packages/frontend/dist");
+const frontendDist = path.join(__dirname, "dist");
+const indexHtmlPath = path.join(frontendDist, "index.html");
+
+console.log(`Checking frontend distribution at: ${frontendDist}`);
+if (!fs.existsSync(indexHtmlPath)) {
+  console.warn(`WARNING: index.html not found at ${indexHtmlPath}. Frontend may not load correctly.`);
+}
+
 app.use(express.static(frontendDist));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendDist, "index.html"));
+  if (fs.existsSync(indexHtmlPath)) {
+    res.sendFile(indexHtmlPath);
+  } else {
+    res.status(404).send("Frontend build not found. Please run 'npm run build'.");
+  }
 });
 
 app.use((err, req, res, next) => {
@@ -50,7 +62,6 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Access it at http://0.0.0.0:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
 });
